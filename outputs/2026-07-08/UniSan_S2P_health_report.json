@@ -1,0 +1,39 @@
+{
+  "project_key": "UniSan_S2P",
+  "project_name": "Unknown",
+  "report_date": "2026-07-08",
+  "rag_status": "Red",
+  "final_score": 0.5,
+  "preliminary": "Red",
+  "pct_complete": 44.0,
+  "expected_pct": 58.8,
+  "gap": 14.8,
+  "at_risk": "High",
+  "project_stage": "Training Phase I",
+  "task_counts": {
+    "not_started": 175,
+    "in_progress": 35,
+    "completed": 133,
+    "on_hold": 0,
+    "total": 343
+  },
+  "overdue_critical": [],
+  "on_hold_tasks": [],
+  "summary": "The UniSan_S2P project is currently in a critical state, marked by significant schedule slippage and a high-risk assessment. With",
+  "key_risks": [],
+  "recommended_actions": [],
+  "scores": {
+    "schedule_health": 0,
+    "completion": 1,
+    "blockers": 0,
+    "overdue": 1,
+    "sentiment": 1
+  },
+  "notes": {
+    "schedule_health": "Schedule is Red \u2014 significant slippage.",
+    "completion": "Actual: 44.0% | Expected: 58.8% | Gap: 14.8%",
+    "blockers": "At Risk = High with 0 tasks On Hold.",
+    "overdue": "No overdue critical tasks. 5 non-critical task(s) overdue.",
+    "sentiment": "No qualitative comments available \u2014 neutral assumption."
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "project_key": "Outokumpu_S2P",
+  "project_name": "Unknown",
+  "report_date": "2026-07-08",
+  "rag_status": "Amber",
+  "final_score": 1.35,
+  "preliminary": "Amber",
+  "pct_complete": 71.0,
+  "expected_pct": 56.9,
+  "gap": -14.1,
+  "at_risk": "High",
+  "project_stage": "Configuration and Build phase",
+  "task_counts": {
+    "not_started": 194,
+    "in_progress": 15,
+    "completed": 255,
+    "on_hold": 3,
+    "total": 467
+  },
+  "overdue_critical": [],
+  "on_hold_tasks": [],
+  "summary": "The Outokumpu_S2P project is currently ahead of its planned completion rate, with 71% of tasks complete against an expected 5",
+  "key_risks": [],
+  "recommended_actions": [],
+  "scores": {
+    "schedule_health": 2,
+    "completion": 2,
+    "blockers": 0,
+    "overdue": 1,
+    "sentiment": 1
+  },
+  "notes": {
+    "schedule_health": "Schedule is Green \u2014 project is on track.",
+    "completion": "Actual: 71.0% | Expected: 56.9% | Gap: -14.1%",
+    "blockers": "At Risk = High with 0 tasks On Hold.",
+    "overdue": "No overdue critical tasks. 5 non-critical task(s) overdue.",
+    "sentiment": "Mixed signals: 2 delay/pending vs 1 positive indicators."
+  }
+}
