@@ -8,8 +8,8 @@ Usage:
     python agent.py
 
 Requirements:
-    pip install pandas openpyxl google-genai
-    Set environment variable: GEMINI_API_KEY=<your_key>
+    pip install pandas openpyxl google-genai python-dotenv
+    Add your key to .env file: GEMINI_API_KEY=your_key_here
 """
 
 import os
@@ -18,8 +18,12 @@ import json
 import re
 from datetime import date, datetime
 import pandas as pd
+from dotenv import load_dotenv
 from google import genai
 from google.genai import types
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Fix Windows console encoding
 if sys.stdout.encoding != 'utf-8':

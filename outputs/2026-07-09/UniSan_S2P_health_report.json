@@ -1,0 +1,46 @@
+{
+  "project_key": "UniSan_S2P",
+  "project_name": "Unknown",
+  "report_date": "2026-07-09",
+  "rag_status": "Red",
+  "final_score": 0.5,
+  "preliminary": "Red",
+  "pct_complete": 44.0,
+  "expected_pct": 58.8,
+  "gap": 14.8,
+  "at_risk": "High",
+  "project_stage": "Training Phase I",
+  "task_counts": {
+    "not_started": 175,
+    "in_progress": 35,
+    "completed": 133,
+    "on_hold": 0,
+    "total": 343
+  },
+  "overdue_critical": [],
+  "on_hold_tasks": [],
+  "summary": "The UniSan_S2P project is significantly behind schedule, with actual completion at 44% against an expected 58.8%. The project's schedule health is Red, and its overall risk level is High, indicating substantial challenges in meeting the planned timeline.",
+  "key_risks": [
+    "Significant schedule slippage (14.8% gap) with over half of the tasks (175 out of 343) not yet started, posing a high risk to on-time completion.",
+    "The declared \"High\" at-risk level, combined with the lack of qualitative comments, suggests underlying systemic issues or unaddressed dependencies that could further impede progress.",
+    "Potential resource or capacity strain as the team attempts to accelerate the large number of \"Not Started\" tasks to catch up, risking quality or increasing burnout."
+  ],
+  "recommended_actions": [
+    "Conduct an urgent deep dive with the Project Manager to understand the root causes of the significant schedule slippage and \"High\" risk level, followed by a comprehensive re-planning exercise.",
+    "Develop a clear strategy to prioritize and accelerate the 1"
+  ],
+  "scores": {
+    "schedule_health": 0,
+    "completion": 1,
+    "blockers": 0,
+    "overdue": 1,
+    "sentiment": 1
+  },
+  "notes": {
+    "schedule_health": "Schedule is Red \u2014 significant slippage.",
+    "completion": "Actual: 44.0% | Expected: 58.8% | Gap: 14.8%",
+    "blockers": "At Risk = High with 0 tasks On Hold.",
+    "overdue": "No overdue critical tasks. 5 non-critical task(s) overdue.",
+    "sentiment": "No qualitative comments available \u2014 neutral assumption."
+  }
+}
