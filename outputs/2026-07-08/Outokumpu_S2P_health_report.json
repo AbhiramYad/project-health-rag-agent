@@ -2,7 +2,7 @@
   "project_key": "Outokumpu_S2P",
   "project_name": "Unknown",
   "report_date": "2026-07-08",
-  "rag_status": "Amber",
+  "rag_status": "Red",
   "final_score": 1.35,
   "preliminary": "Amber",
   "pct_complete": 71.0,
@@ -19,7 +19,7 @@
   },
   "overdue_critical": [],
   "on_hold_tasks": [],
-  "summary": "The Outokumpu_S2P project is currently ahead of its planned completion rate, with 71% of tasks complete against an expected 5",
+  "summary": "The Outokumpu_S2P project, while currently ahead of its expected completion rate (71% actual vs 57% expected), is flagged with a high-risk level. Critical dependencies, impacted workshop dates, and pending client sign-offs pose significant threats to the project's schedule and successful delivery in the Configuration and Build phase.\nKey",
   "key_risks": [],
   "recommended_actions": [],
   "scores": {

@@ -325,20 +325,19 @@ def build_prompt(project_name: str, p: dict, scored: dict) -> str:
     return f"""You are a senior project delivery analyst at Zycus Professional Services.
 Your job is to validate a pre-computed project health RAG status and provide clear, executive-level reasoning.
 
-══════════════════════════════════════════════════════
 PROJECT CONTEXT
-══════════════════════════════════════════════════════
+================
 Project Name     : {project_name}
 Project Manager  : {p['project_manager']}
 Current Phase    : {p['project_stage']}
 Project Status   : {p['project_status']}
-Timeline         : {p['project_start']} → {p['project_end']}
+Timeline         : {p['project_start']} to {p['project_end']}
 Today's Date     : {p['today_date']}
 At Risk Level    : {p['at_risk']}
 
 PROGRESS
-  Actual % Complete   : {p['pct_complete']:.1f}%
-  Expected % Complete : {scored.get('expected_pct', 'N/A')}%
+  Actual % Complete    : {p['pct_complete']:.1f}%
+  Expected % Complete  : {scored.get('expected_pct', 'N/A')}%
   Gap (Expected-Actual): {scored.get('gap', 'N/A')}%
 
 TASK BREAKDOWN
@@ -360,23 +359,21 @@ QUALITATIVE COMMENTS / STATUS NOTES:
 {comments_block}
 
 PRE-COMPUTED RAG SCORE
-  Schedule Health  : {scored['scores']['schedule_health']}/2 — {scored['notes']['schedule_health']}
-  Completion Rate  : {scored['scores']['completion']}/2 — {scored['notes']['completion']}
-  Blocker Exposure : {scored['scores']['blockers']}/2 — {scored['notes']['blockers']}
-  Overdue Critical : {scored['scores']['overdue']}/2 — {scored['notes']['overdue']}
-  Sentiment        : {scored['scores']['sentiment']}/2 — {scored['notes']['sentiment']}
-  ─────────────────────────────────────────────────
+  Schedule Health  : {scored['scores']['schedule_health']}/2 - {scored['notes']['schedule_health']}
+  Completion Rate  : {scored['scores']['completion']}/2 - {scored['notes']['completion']}
+  Blocker Exposure : {scored['scores']['blockers']}/2 - {scored['notes']['blockers']}
+  Overdue Critical : {scored['scores']['overdue']}/2 - {scored['notes']['overdue']}
+  Sentiment        : {scored['scores']['sentiment']}/2 - {scored['notes']['sentiment']}
   FINAL SCORE      : {scored['final_score']:.3f} / 2.000
   PRELIMINARY RAG  : {scored['preliminary']}
-══════════════════════════════════════════════════════
 
 INSTRUCTIONS:
 1. Review the project context and pre-computed RAG score above.
-2. You MAY override the preliminary RAG by one level (e.g. Amber→Red) ONLY if strong qualitative evidence clearly justifies it. State your reason.
-3. Output your response in EXACTLY this format (no extra text before or after):
+2. You MAY override the preliminary RAG by one level (e.g. Amber to Red) ONLY if strong qualitative evidence clearly justifies it.
+3. Output your response in EXACTLY this format (no extra text before or after, no markdown formatting):
 
 RAG Status: [Red/Amber/Green]
-Summary: [2–3 sentences of plain-English executive summary suitable for a VP. Mention the project name.]
+Summary: [2-3 sentences of plain-English executive summary suitable for a VP. Mention the project name.]
 Key Risks:
 - [Risk 1]
 - [Risk 2]
@@ -384,7 +381,7 @@ Key Risks:
 Recommended Actions:
 - [Action 1]
 - [Action 2]
-Data Quality Notes: [Any missing/messy data fields that affected the analysis, or "None".]
+Data Quality Notes: [Any missing/messy data fields that affected the analysis, or write None.]
 """
 
 
@@ -396,7 +393,7 @@ def call_gemini(prompt: str, api_key: str) -> str:
         contents=prompt,
         config=types.GenerateContentConfig(
             temperature=0.3,
-            max_output_tokens=1024,
+            max_output_tokens=2048,  # increased to prevent truncation
         ),
     )
     return response.text.strip()
@@ -424,33 +421,35 @@ def parse_llm_response(text: str) -> dict:
         if result["rag_status"] == "Yellow":
             result["rag_status"] = "Amber"
 
-    # Summary
-    m = re.search(r"Summary:\s*(.+?)(?=\nKey Risks:|\nRecommended|\Z)", text, re.DOTALL)
+    # Summary - capture until next section header
+    m = re.search(r"Summary:\s*(.+?)(?=\n(?:Key Risks|Recommended Actions|Data Quality)|$)", text, re.DOTALL | re.IGNORECASE)
     if m:
         result["summary"] = m.group(1).strip()
 
-    # Key Risks
-    m = re.search(r"Key Risks:(.*?)(?=\nRecommended Actions:|\Z)", text, re.DOTALL)
+    # Key Risks - capture bullet lines between Key Risks and Recommended Actions
+    m = re.search(r"Key Risks:(.+?)(?=\nRecommended Actions:|\nData Quality|$)", text, re.DOTALL | re.IGNORECASE)
     if m:
         result["key_risks"] = [
-            line.lstrip("- •").strip()
+            line.lstrip("- *•123456789.").strip()
             for line in m.group(1).strip().splitlines()
-            if line.strip() and line.strip() not in ("-", "•")
+            if line.strip() and not line.strip().startswith("Key")
         ]
+        result["key_risks"] = [r for r in result["key_risks"] if len(r) > 3]
 
     # Recommended Actions
-    m = re.search(r"Recommended Actions:(.*?)(?=\nData Quality|\Z)", text, re.DOTALL)
+    m = re.search(r"Recommended Actions:(.+?)(?=\nData Quality|$)", text, re.DOTALL | re.IGNORECASE)
     if m:
         result["recommended_actions"] = [
-            line.lstrip("- •").strip()
+            line.lstrip("- *•123456789.").strip()
             for line in m.group(1).strip().splitlines()
-            if line.strip() and line.strip() not in ("-", "•")
+            if line.strip() and not line.strip().startswith("Recommended")
         ]
+        result["recommended_actions"] = [r for r in result["recommended_actions"] if len(r) > 3]
 
     # Data Quality Notes
-    m = re.search(r"Data Quality Notes:\s*(.+)", text, re.DOTALL)
+    m = re.search(r"Data Quality Notes:\s*(.+)", text, re.DOTALL | re.IGNORECASE)
     if m:
-        result["data_quality_notes"] = m.group(1).strip()
+        result["data_quality_notes"] = m.group(1).strip().split("\n")[0].strip()
 
     return result
 

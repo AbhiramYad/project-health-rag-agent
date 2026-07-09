@@ -1,13 +1,14 @@
 # Project Health Report — Outokumpu S2P
 > **Report Date:** 2026-07-08  |  **Project Manager:** Aftab Hashambhai
 
-## 🟡 RAG Status: **Amber**
+## 🔴 RAG Status: **Red** *(LLM Override)*
 
 ---
 
 ## Executive Summary
 
-The Outokumpu_S2P project is currently ahead of its planned completion rate, with 71% of tasks complete against an expected 5
+The Outokumpu_S2P project, while currently ahead of its expected completion rate (71% actual vs 57% expected), is flagged with a high-risk level. Critical dependencies, impacted workshop dates, and pending client sign-offs pose significant threats to the project's schedule and successful delivery in the Configuration and Build phase.
+Key
 
 ---
 
@@ -20,7 +21,7 @@ The Outokumpu_S2P project is currently ahead of its planned completion rate, wit
 | Blocker Exposure | 0/2 | 20% | At Risk = High with 0 tasks On Hold. |
 | Overdue Critical | 1/2 | 15% | No overdue critical tasks. 5 non-critical task(s) overdue. |
 | Sentiment        | 1/2 | 10% | Mixed signals: 2 delay/pending vs 1 positive indicators. |
-| **TOTAL**        | **1.350/2.000** | 100% | Preliminary: **Amber** → Final: **Amber** |
+| **TOTAL**        | **1.350/2.000** | 100% | Preliminary: **Amber** → Final: **Red** |
 
 ---
 
