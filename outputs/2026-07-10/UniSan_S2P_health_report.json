@@ -1,0 +1,47 @@
+{
+  "project_key": "UniSan_S2P",
+  "project_name": "Unknown",
+  "report_date": "2026-07-10",
+  "rag_status": "Red",
+  "final_score": 0.5,
+  "preliminary": "Red",
+  "pct_complete": 44.0,
+  "expected_pct": 58.8,
+  "gap": 14.8,
+  "at_risk": "High",
+  "project_stage": "Training Phase I",
+  "task_counts": {
+    "not_started": 175,
+    "in_progress": 35,
+    "completed": 133,
+    "on_hold": 0,
+    "total": 343
+  },
+  "overdue_critical": [],
+  "on_hold_tasks": [],
+  "summary": "The UniSan_S2P project is currently Red, experiencing significant schedule slippage with a 14.8% gap between actual and expected completion. Over half of the project tasks remain unstarted, contributing to a high overall risk level and indicating a critical need for intervention.",
+  "key_risks": [
+    "Significant schedule delay: The project is 14.8% behind schedule, with the system flagging overall schedule health as Red.",
+    "High volume of unstarted tasks: 175 out of 343 tasks (over 51%) are not yet started, posing a substantial risk to future progress and timely completion.",
+    "Elevated project risk: The project's \"At Risk Level\" is High, suggesting underlying issues that are not explicitly detailed but are impacting progress."
+  ],
+  "recommended_actions": [
+    "Conduct an immediate deep-dive analysis to identify root causes for the significant schedule gap and the large number of unstarted tasks.",
+    "Develop and implement a revised project plan with clear mitigation strategies to address the schedule slippage and high-risk areas.",
+    "Engage with the Project Manager to understand the \"High At Risk Level\" and establish a proactive risk management and communication plan."
+  ],
+  "scores": {
+    "schedule_health": 0,
+    "completion": 1,
+    "blockers": 0,
+    "overdue": 1,
+    "sentiment": 1
+  },
+  "notes": {
+    "schedule_health": "Schedule is Red \u2014 significant slippage.",
+    "completion": "Actual: 44.0% | Expected: 58.8% | Gap: 14.8%",
+    "blockers": "At Risk = High with 0 tasks On Hold.",
+    "overdue": "No overdue critical tasks. 5 non-critical task(s) overdue.",
+    "sentiment": "No qualitative comments available \u2014 neutral assumption."
+  }
+}
