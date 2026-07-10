@@ -1,6 +1,6 @@
 {
   "project_key": "UniSan_S2P",
-  "project_name": "Unknown",
+  "project_name": "Zycus - UniSan S2P Implementation",
   "report_date": "2026-07-10",
   "rag_status": "Red",
   "final_score": 0.5,
@@ -19,16 +19,16 @@
   },
   "overdue_critical": [],
   "on_hold_tasks": [],
-  "summary": "The UniSan_S2P project is currently Red, experiencing significant schedule slippage with a 14.8% gap between actual and expected completion. Over half of the project tasks remain unstarted, contributing to a high overall risk level and indicating a critical need for intervention.",
+  "summary": "The UniSan_S2P project is currently rated Red due to significant schedule slippage, with actual completion lagging expected progress by 14.8%. The project is flagged as 'High Risk' and has a substantial number of tasks (175) yet to be initiated, indicating a high probability of further delays.",
   "key_risks": [
-    "Significant schedule delay: The project is 14.8% behind schedule, with the system flagging overall schedule health as Red.",
-    "High volume of unstarted tasks: 175 out of 343 tasks (over 51%) are not yet started, posing a substantial risk to future progress and timely completion.",
-    "Elevated project risk: The project's \"At Risk Level\" is High, suggesting underlying issues that are not explicitly detailed but are impacting progress."
+    "Significant schedule slippage and high risk of further delays due to a substantial number of tasks (175) not yet started.",
+    "Potential for resource over-utilization and burnout if aggressive recovery efforts are initiated without proper planning.",
+    "Lack of qualitative comments hinders a deeper understanding of root causes and potential mitigation strategies."
   ],
   "recommended_actions": [
-    "Conduct an immediate deep-dive analysis to identify root causes for the significant schedule gap and the large number of unstarted tasks.",
-    "Develop and implement a revised project plan with clear mitigation strategies to address the schedule slippage and high-risk areas.",
-    "Engage with the Project Manager to understand the \"High At Risk Level\" and establish a proactive risk management and communication plan."
+    "Conduct an immediate deep-dive with the Project Manager to understand the root causes of the 14.8% schedule gap and the \"High Risk\" status.",
+    "Develop and implement a comprehensive recovery plan, including task re-prioritization, resource assessment, and potential scope adjustments, to address the 175 unstarted tasks.",
+    "Establish a more robust communication protocol to ensure regular, detailed qualitative updates are provided, enhancing project visibility and proactive risk management."
   ],
   "scores": {
     "schedule_health": 0,

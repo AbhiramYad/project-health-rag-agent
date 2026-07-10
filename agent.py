@@ -129,13 +129,20 @@ def load_project(filepath: str) -> dict:
         plan_df = pd.DataFrame()
 
     data["plan_columns"] = list(plan_df.columns) if not plan_df.empty else []
-    data["project_name"] = "Unknown"
 
-    # Extract project name from first non-null value in Project Name column
-    if "Project Name" in plan_df.columns:
-        names = plan_df["Project Name"].dropna()
-        if not names.empty:
-            data["project_name"] = str(names.iloc[0])
+    # Extract project name - try Task Name in first row, then Project Name column, then filename key
+    data["project_name"] = "Unknown"
+    if not plan_df.empty:
+        # First row Task Name usually contains the top-level project name
+        if "Task Name" in plan_df.columns:
+            first_task = str(plan_df["Task Name"].dropna().iloc[0]).strip() if not plan_df["Task Name"].dropna().empty else ""
+            if first_task and "implementation" in first_task.lower():
+                data["project_name"] = first_task
+        # Fallback: Project Name column
+        if data["project_name"] == "Unknown" and "Project Name" in plan_df.columns:
+            names = plan_df["Project Name"].dropna()
+            if not names.empty:
+                data["project_name"] = str(names.iloc[0])
 
     # Overdue critical tasks
     overdue_critical = []
@@ -397,7 +404,7 @@ def call_gemini(prompt: str, api_key: str) -> str:
         contents=prompt,
         config=types.GenerateContentConfig(
             temperature=0.3,
-            max_output_tokens=2048,  # increased to prevent truncation
+            max_output_tokens=4096,  # increased to prevent truncation on large projects
         ),
     )
     return response.text.strip()
@@ -507,10 +514,10 @@ def save_report(project_key: str, p: dict, scored: dict, parsed: dict, report_da
         f"| Field | Value |",
         f"|-------|-------|",
         f"| Phase | {p['project_stage']} |",
-        f"| Timeline | {p['project_start']} → {p['project_end']} |",
+        f"| Timeline | {str(p['project_start'])[:10]} to {str(p['project_end'])[:10]} |",
         f"| Actual % Complete | {p['pct_complete']:.1f}% |",
         f"| Expected % Complete | {scored.get('expected_pct', 'N/A')}% |",
-        f"| Progress Gap | {scored.get('gap', 'N/A')}% behind |",
+        f"| Progress Gap | {abs(scored.get('gap', 0)):.1f}% {'ahead of schedule' if scored.get('gap', 0) < 0 else 'behind schedule'} |",
         f"| Tasks Completed | {p['task_counts']['completed']} / {p['task_counts']['total']} |",
         f"| Tasks On Hold | {p['task_counts']['on_hold']} |",
         f"| At Risk Level | {p['at_risk']} |",
