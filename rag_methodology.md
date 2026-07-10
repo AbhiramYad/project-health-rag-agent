@@ -17,7 +17,18 @@ RAG stands for **Red / Amber / Green** — a traffic-light system used to commun
 
 ## The 5-Dimension Scoring Framework
 
-We evaluate every project across **5 weighted dimensions**. Each dimension scores 0, 1, or 2 points. The final weighted score determines the RAG status.
+We evaluate every project across **5 primary weighted dimensions** plus 2 supplementary indicators. Each primary dimension scores 0, 1, or 2 points. The weighted score determines the RAG status.
+
+The 6 factors named in the assignment brief are addressed as follows:
+
+| Assignment Factor | Coverage |
+|---|---|
+| Schedule Slippage | Dimension 1: Schedule Health (30%) |
+| Budget Burn | Supplementary — see note below |
+| Milestone Health | Dimension 4: Overdue Critical Tasks (15%) |
+| Blockers | Dimension 3: Blocker & Risk Exposure (20%) |
+| Stakeholder Sentiment | Dimension 5: Qualitative Sentiment (10%) |
+| Other Indicators | Dimension 2: Task Completion Rate (25%) |
 
 ---
 
@@ -104,7 +115,22 @@ The AI agent reads all available `Status Comment`, `Comments`, and the `Comments
 
 ---
 
-## Final RAG Calculation
+## Supplementary Indicators (Non-Scored)
+
+### Budget Burn
+
+The sample project plan files (`Project Plan B.xlsx`, `S2P Project.xlsx`) do **not** include budget columns (planned cost, actual cost, EAC, or EV). Therefore budget burn cannot be auto-computed from the available data.
+
+**How the agent handles this:**
+- The Gemini LLM is instructed to flag any budget-related language found in qualitative comments (e.g., "over budget", "cost overrun", "resource cost exceeds").
+- If a real deployment added `Planned Cost` and `Actual Cost` columns, the agent can be extended in under 10 lines to compute **Cost Performance Index (CPI) = Earned Value / Actual Cost** and map it to a score.
+- Assumption noted in report: `Data Quality Notes` section explicitly states when budget data is unavailable.
+
+### Milestone Health
+
+Milestone health is addressed through **Dimension 4 (Overdue Critical Tasks)**, which directly captures whether key project milestones (marked `Critical? = Yes`) are on time. Tasks marked `Critical` in Microsoft Project-style plans represent the project's critical path and key milestones.
+
+---
 
 ```
 Final Score = (D1 × 0.30) + (D2 × 0.25) + (D3 × 0.20) + (D4 × 0.15) + (D5 × 0.10)
